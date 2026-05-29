@@ -1,11 +1,12 @@
 <?php
+include "../includes/db_connect.php";
 session_start();
-include 'db_connect.php';
+
 
 $email = $_POST['email'];
 $wachtwoord = $_POST['wachtwoord'];
 
-$stmt = $conn->prepare("SELECT * FROM gebruikers WHERE email = ?");
+$stmt = $conn->prepare("SELECT * FROM klant WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -27,7 +28,7 @@ if ($result->num_rows > 0) {
         } 
         
         else {
-            header('Location: bestellen.php');
+            header('Location: index.php');
             exit();
         }
 

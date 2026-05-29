@@ -1,0 +1,3 @@
+naam:TestNaam123
+email:TestNaam123@gmail.com
+wachtwoord: DitIsEenTestersWachtwoord123!

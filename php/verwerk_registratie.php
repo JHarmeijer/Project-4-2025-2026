@@ -21,7 +21,7 @@
 <?php
 include '../includes/db_connect.php';
 
-$gebruikersnaam = $_POST['naam'];
+$klant_naam = $_POST['naam'];
 $email = $_POST['email'];
 $wachtwoord = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -30,8 +30,8 @@ if ($_POST['password'] !== $_POST['password2']){
     exit;
 } 
 
-$stmt = $conn->prepare("INSERT INTO gebruikers (gebruikersnaam, email, wachtwoord) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $gebruikersnaam, $email, $wachtwoord);
+$stmt = $conn->prepare("INSERT INTO klant (klant_naam, email, wachtwoord) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $klant_naam, $email, $wachtwoord);
 
 
 if ($stmt->execute()) {
