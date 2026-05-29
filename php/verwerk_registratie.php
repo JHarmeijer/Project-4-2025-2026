@@ -19,7 +19,7 @@
 </nav>
 
 <?php
-include 'db_connect.php';
+include '../includes/db_connect.php';
 
 $gebruikersnaam = $_POST['naam'];
 $email = $_POST['email'];
