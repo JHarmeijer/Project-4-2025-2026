@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
     
     if (password_verify($wachtwoord, $row['wachtwoord'])){ // wachtwoord controleren //
 
-        $_SESSION['gebruiker_id'] = $row['gebruiker_id']; // Als het overeenkomt met de gegevens in de database, dan log je in //
+        $_SESSION['gebruiker_id'] = $row['klant_ID']; // Als het overeenkomt met de gegevens in de database, dan log je in //
         $_SESSION['rol'] = $row['rol'];
 
         
