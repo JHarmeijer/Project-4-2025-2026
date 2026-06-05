@@ -3,9 +3,6 @@ session_start();
 include "../includes/header.php";
 include "../includes/db_connect.php";
 
-if (!isset($_SESSION["gebruiker_id"])){
-    die("Je moet ingelogd zijn om te bestellen.");
-}
 
 $sql = "SELECT product_ID, product_naam, prijs, voorraad FROM producten";
 $result = $conn->query($sql); 

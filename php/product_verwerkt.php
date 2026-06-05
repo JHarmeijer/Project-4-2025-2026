@@ -2,9 +2,6 @@
 session_start();
 include '../includes/db_connect.php';
 
-if (!isset($_SESSION['gebruiker_id'])) {
-    die("Je moet ingelogd zijn om een bestelling te plaatsen.");
-}
 
 $klant_id = $_SESSION['gebruiker_id'];
 $datum    = date('Y-m-d');
