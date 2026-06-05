@@ -49,11 +49,11 @@ session_start();
 <body>
 
 <div class="container">
-    <h1>🛒 Winkelwagen</h1>
+    <h1> Winkelwagen</h1>
 
     <?php if (empty($_SESSION['cart'])): ?>
         <div class="empty-cart">
-            <h2>Je winkelwagen is leeg</h2>
+            <h2 Winkelwagen is leeg</h2>
             <p>Voeg producten toe om verder te gaan.</p>
         </div>
     <?php else: ?>
