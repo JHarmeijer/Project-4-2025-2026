@@ -59,7 +59,82 @@ session_start();
         </div>
     <?php else: ?>
         <p>Hier komen later je producten te staan.</p>
-    <?php endif; ?>
+   
+        <?php endif; ?>
+    <form method="POST">
+    <label for="coupon">Kortingscode:</label>
+    <input type="text" name="coupon" id="coupon" placeholder="Voer code in">
+    <button type="submit" name="check_coupon">Toepassen</button>
+</form>
+
+<?php
+$korting = 0;
+$melding = "";
+
+if (isset($_POST['check_coupon'])) {
+
+    $coupon = trim($_POST['coupon']);
+
+    $sql = "SELECT * FROM coupons
+            WHERE coupon_code = ?
+            AND actief = 1";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $coupon);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+
+        $couponData = $result->fetch_assoc();
+
+        $_SESSION['coupon'] = [
+            'code' => $couponData['coupon_code'],
+            'type' => $couponData['korting_type'],
+            'waarde' => $couponData['kortings_waarde']
+        ];
+
+        $melding = "Kortingscode toegepast!";
+    } else {
+        $melding = "Ongeldige kortingscode.";
+    }
+}
+?>
+
+
+<?php if (!empty($melding)): ?>
+    <p><?= htmlspecialchars($melding) ?></p>
+<?php endif; ?>
+
+<?php
+
+$totaal = 100;
+
+if (isset($_SESSION['coupon'])) {
+
+    if ($_SESSION['coupon']['type'] === 'percentage') {
+
+        $korting = ($totaal * $_SESSION['coupon']['waarde']) / 100;
+
+    } else {
+
+        $korting = $_SESSION['coupon']['waarde'];
+    }
+
+    $nieuwTotaal = max(0, $totaal - $korting);
+
+    echo "<p>Subtotaal: €" . number_format($totaal, 2) . "</p>";
+    echo "<p>Korting: -€" . number_format($korting, 2) . "</p>";
+    echo "<h3>Totaal: €" . number_format($nieuwTotaal, 2) . "</h3>";
+
+} else {
+
+    echo "<h3>Totaal: €" . number_format($totaal, 2) . "</h3>";
+}
+?>
+
+
 
     <div class="checkout">
         <button disabled>Afrekenen</button>
