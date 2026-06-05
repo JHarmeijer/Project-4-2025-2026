@@ -7,7 +7,7 @@ if (!isset($_SESSION["gebruiker_id"])){
     die("Je moet ingelogd zijn om te bestellen.");
 }
 
-$sql = "SELECT product_ID, product_naam, prijs, voorraad FROM producten";
+$sql = "SELECT product_ID, product_naam, prijs, voorraad, img FROM producten";
 $result = $conn->query($sql); 
 ?>
 
@@ -31,6 +31,9 @@ $result = $conn->query($sql);
                             <h5 class="card-title">
                                 <?php echo htmlspecialchars($product['product_naam']); ?>
                             </h5>
+                            <img src="<?php echo htmlspecialchars($product['img']); ?>" 
+     class="card-img-top" 
+     alt="<?php echo htmlspecialchars($product['product_naam']); ?>">
                             <p class="card-text text-muted">
                                 Product ID: <?php echo (int)$product['product_ID'];  ?>
                             </p>
