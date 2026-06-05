@@ -18,6 +18,7 @@
             <li class="nav-item"><a class="nav-link" href="../php/registratie.php">Registratie</a></li>
             <li class="nav-item"><a class="nav-link active" href="../php/inlog.php">Inloggen</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/account.php">Account</a></li>
+            <li class="nav-item"><a class="nav-link" href="../php/product.php">producten</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/bestellen.php">Bestellen</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/reviews.php">Reviews</a></li>
 
