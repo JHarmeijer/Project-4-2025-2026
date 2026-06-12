@@ -10,7 +10,6 @@ if (!isset($_SESSION["gebruiker_id"])) {
 $melding = "";
 
 // ==========================================
-// ✅ NIEUW: PRODUCTEN OPSLAAN IN SESSIE
 // Vangt de POST op van bestellen.php
 // Slaat product_ID en aantal op in $_SESSION['winkelwagen']
 // ==========================================
@@ -37,7 +36,6 @@ if (isset($_POST['toevoegen'])) {
 }
 
 // ==========================================
-// ✅ NIEUW: PRODUCT VERWIJDEREN UIT WINKELWAGEN
 // Wordt aangeroepen via ?verwijder=product_ID in de URL
 // ==========================================
 if (isset($_GET['verwijder'])) {
@@ -79,7 +77,6 @@ if (isset($_POST['remove_coupon'])) {
 }
 
 // ==========================================
-// ✅ NIEUW: AFREKENEN
 // Stuurt door naar bestelling_verwerkt.php
 // ==========================================
 if (isset($_POST['afrekenen'])) {

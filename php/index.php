@@ -46,7 +46,7 @@
       let totaalSlides = 0;
 
       /* PRODUCTEN LADEN */
-      fetch("http://localhost/Project%204%20Chef's%20Choice/Project-4-2025-2026/php/producten.php")
+      fetch("producten.php")
         .then(response => response.json())
         .then(producten => {
           const track  = document.getElementById('slideshow-track');

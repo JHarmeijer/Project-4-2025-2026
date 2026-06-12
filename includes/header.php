@@ -17,9 +17,7 @@
             <li class="nav-item"><a class="nav-link" href="../php/index.php">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/registratie.php">Registratie</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/inlog.php">Inloggen</a></li>
-            <li class="nav-item"><a class="nav-link" href="../php/account.php">Account</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/product.php">producten</a></li>
-            <li class="nav-item"><a class="nav-link" href="../php/producten.php">Bestellen</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/reviews.php">Reviews</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/winkelwagenpagina.php">winkelwagen</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/admin.php">admin</a></li>
