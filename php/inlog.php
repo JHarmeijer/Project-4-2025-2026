@@ -1,6 +1,6 @@
 <?php
-include "../includes/header.php";
 session_start();
+include "../includes/header.php";
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -11,39 +11,47 @@ session_start();
 
     <title>Inloggen</title>
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
+
 </head>
 <body>
 
+    <div class="login-wrapper">
+    <div class="login-kaart">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card shadow-sm rounded">
-                <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Inloggen</h2>
+        <h2 class="login-titel">Inloggen</h2>
 
-                    <form action="verwerk_inlog.php" method="POST">
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-control" placeholder="E-mail" required>
-                        </div>
+        <form action="verwerk_inlog.php" method="POST">
 
-                        <div class="form-group">
-                            <input type="password" name="wachtwoord" class="form-control" placeholder="Wachtwoord" required>
-                        </div>
+            <label for="email">E-mail</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Voer je e-mailadres in"
+                required
+            >
 
-                        <button type="submit" class="btn btn-primary btn-block">Inloggen</button>
-                    </form>
+            <label for="wachtwoord">Wachtwoord</label>
+            <input
+                type="password"
+                id="wachtwoord"
+                name="wachtwoord"
+                placeholder="Voer je wachtwoord in"
+                required
+            >
 
-                    <p class="mt-3 text-center">
-                        Nog geen account? <a href="../php/registratie.php">Registreren</a>
-                    </p>
-                </div>
-            </div>
+            <button type="submit">
+                Inloggen
+            </button>
+
+        </form>
+
+        <div class="login-link">
+            Nog geen account?
+            <a href="../php/registratie.php">Registreren</a>
         </div>
+
     </div>
 </div>
 
