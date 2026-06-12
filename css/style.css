@@ -529,6 +529,257 @@ select {
     color: #a07830;
  }
 
+ .product-bestel-kaart {
+    background: white;
+    border: 1px solid #d6cfb8;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+ 
+.product-bestel-img-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-bottom: 1px solid #d6cfb8;
+    background: #f5f0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.product-bestel-geen-img {
+    background: #f5f0e0;
+}
+ 
+.product-bestel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+ 
+.product-bestel-body {
+    padding: 16px 18px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.wagen-tabel { width: 100%; border-collapse: collapse; }
+        .wagen-tabel th {
+            font-size: 12px;
+            font-weight: bold;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0 12px 10px 12px;
+            border-bottom: 2px solid #c9a84c;
+            text-align: left;
+        }
+        .wagen-tabel td {
+            padding: 14px 12px;
+            font-size: 14px;
+            color: #1a2236;
+            border-bottom: 1px solid #d6cfb8;
+            vertical-align: middle;
+        }
+        .wagen-tabel tr:last-child td { border-bottom: none; }
+        .wagen-tabel .prijs-cel { color: #c9a84c; font-weight: bold; }
+        .verwijder-link {
+            color: #a03030;
+            font-size: 13px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .verwijder-link:hover { color: #701818; text-decoration: underline; }
+ 
+        .totaal-rij {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 14px;
+            color: #444;
+            border-bottom: 1px solid #d6cfb8;
+        }
+        .totaal-rij:last-child { border-bottom: none; }
+        .totaal-eindprijs {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a2236;
+        }
+        .totaal-eindprijs span { color: #c9a84c; }
+ 
+        .melding-ok  { background: #eaf3de; color: #27500a; border: 1px solid #c0dd97; border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-bottom: 16px; }
+        .melding-err { background: #fcebeb; color: #791f1f; border: 1px solid #f7c1c1; border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-bottom: 16px; }
+ 
+        .coupon-actief {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f5f0e0;
+            border: 1px solid #d6cfb8;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #1a2236;
+            margin-top: 12px;
+        }
+        .coupon-badge {
+            background: #c9a84c;
+            color: #1a2236;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+        .coupon-verwijder {
+            margin-left: auto;
+            background: none;
+            border: 1px solid #d6cfb8;
+            color: #a03030;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.15s;
+            margin-top: 0;
+            width: auto;
+        }
+        .coupon-verwijder:hover { background: #fcebeb; }
+    .admin-kaart {
+            background: white;
+            border: 1px solid #d6cfb8;
+            border-radius: 12px;
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+        .admin-kaart-header {
+            background: #1a2236;
+            color: #f5f0e0;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-kaart-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #c9a84c;
+        }
+        .admin-kaart-body { padding: 22px 24px; }
+ 
+        /* ---- Subsectie label ---- */
+        .sub-label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #1a2236;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #d6cfb8;
+        }
+ 
+        /* ---- Tabel ---- */
+        .admin-tabel { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .admin-tabel th {
+            font-size: 11px;
+            font-weight: bold;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0 12px 8px 12px;
+            border-bottom: 2px solid #c9a84c;
+            text-align: left;
+            white-space: nowrap;
+        }
+        .admin-tabel td {
+            padding: 11px 12px;
+            color: #1a2236;
+            border-bottom: 1px solid #d6cfb8;
+            vertical-align: middle;
+        }
+        .admin-tabel tr:last-child td { border-bottom: none; }
+        .admin-tabel .id-cel { color: #aaa; font-size: 12px; }
+        .admin-tabel .prijs-cel { color: #c9a84c; font-weight: bold; }
+ 
+        /* ---- Rol badge ---- */
+        .rol-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 9px;
+            border-radius: 6px;
+        }
+        .rol-admin  { background: #1a2236; color: #c9a84c; }
+        .rol-klant  { background: #f5f0e0; color: #1a2236; border: 1px solid #d6cfb8; }
+ 
+        /* ---- Inline form elementen ---- */
+        .inline-form { display: flex; gap: 8px; align-items: center; }
+        .inline-form input[type="number"] {
+            width: 80px;
+            padding: 5px 8px;
+            font-size: 13px;
+        }
+        .inline-form select {
+            width: 110px;
+            padding: 5px 8px;
+            font-size: 13px;
+        }
+        .btn-opslaan {
+            background: #c9a84c;
+            color: #1a2236;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px 12px;
+            cursor: pointer;
+            transition: background 0.15s;
+            margin-top: 0;
+            width: auto;
+        }
+        .btn-opslaan:hover { background: #a07830; color: white; }
+ 
+        .btn-verwijder {
+            background: none;
+            border: 1px solid #f7c1c1;
+            color: #a03030;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px 12px;
+            cursor: pointer;
+            transition: background 0.15s;
+            margin-top: 0;
+            width: auto;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-verwijder:hover { background: #fcebeb; color: #701818; }
+ 
+        /* ---- Toevoeg-formulier ---- */
+        .toevoeg-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr auto;
+            gap: 10px;
+            align-items: end;
+            margin-bottom: 24px;
+        }
+        .toevoeg-grid label { font-size: 12px; color: #888; margin-bottom: 4px; display: block; margin-top: 0; }
+        .toevoeg-grid input { margin: 0; }
+ 
+        /* ---- Meldingen ---- */
+        .melding-ok  { background: #eaf3de; color: #27500a; border: 1px solid #c0dd97; border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-bottom: 20px; }
+        .melding-err { background: #fcebeb; color: #791f1f; border: 1px solid #f7c1c1; border-radius: 8px; padding: 10px 14px; font-size: 14px; margin-bottom: 20px; }
+ 
+        /* ---- Jij-badge ---- */
+        .jij-badge { font-size: 12px; color: #aaa; font-style: italic; }
+
  /* =====================
    NAVBAR
    ===================== */
