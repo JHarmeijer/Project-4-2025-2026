@@ -3,10 +3,6 @@ session_start();
 include "../includes/header.php";
 include "../includes/db_connect.php";
 
-if (!isset($_SESSION['gebruiker_id'])) {
-    header('Location: login.php');
-    exit;
-}
 if ($_SESSION['rol'] !== 'admin') {
     header('Location: index.php');
     exit;

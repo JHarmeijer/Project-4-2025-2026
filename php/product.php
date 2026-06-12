@@ -3,8 +3,9 @@ session_start();
 include "../includes/header.php";
 include "../includes/db_connect.php";
 
-if (!isset($_SESSION["gebruiker_id"])){
-    die("Je moet ingelogd zijn om te bestellen.");
+if (!isset($_SESSION['klant_ID'])) {
+    header('Location: inlog.php');
+    exit;
 }
 
 $sql = "SELECT product_ID, product_naam, prijs, voorraad, img FROM producten";
