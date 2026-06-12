@@ -22,7 +22,7 @@ $result = $conn->query($sql);
 <body>
 <div class="container mt-5">
     <h2 class="text-center mb-4">Plaats je bestelling</h2>
-    <form action="product_verwerkt.php" method="POST">
+    <form action="winkelwagenpagina.php" method="POST">
         <div class="row">
             <?php while ($product = $result->fetch_assoc()) { ?>
                 <div class="col-md-4 mb-4">
@@ -32,9 +32,9 @@ $result = $conn->query($sql);
                                 <?php echo htmlspecialchars($product['product_naam']); ?>
                             </h5>
                             <img src="<?php echo htmlspecialchars($product['img']); ?>" 
-     class="card-img-top" 
-     alt="<?php echo htmlspecialchars($product['product_naam']); ?>">
-                            <p class="card-text text-muted">
+                                class="card-img-top" 
+                                alt="<?php echo htmlspecialchars($product['product_naam']); ?>">
+                                                        <p class="card-text text-muted">
                                 Product ID: <?php echo (int)$product['product_ID'];  ?>
                             </p>
                             <p class="card-text">
