@@ -21,6 +21,7 @@
             <li class="nav-item"><a class="nav-link" href="../php/product.php">producten</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/reviews.php">Reviews</a></li>
             <li class="nav-item"><a class="nav-link" href="../php/winkelwagenpagina.php">winkelwagen</a></li>
+            <li class="nav-item"><a class="nav-link" href="../php/admin.php">admin</a></li>
 
 
             <?php
