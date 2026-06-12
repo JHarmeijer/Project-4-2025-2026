@@ -3,12 +3,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="../css/style.css">
 
-
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
-    <a class="navbar-brand d-flex align-items-center" href="./index.php">
+
+    <a class="navbar-brand d-flex align-items-center" href="../index.php">
         <img src="../assets/Chef's Choice Logo.png"
-        alt="Chef's Choice Logo"
-        class="navbar-logo">
+             alt="Chef's Choice Logo"
+             class="navbar-logo">
     </a>
 
     <button class="navbar-toggler" type="button"
@@ -36,6 +36,10 @@
                 <a class="nav-link" href="../php/reviews.php">Reviews</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="../php/winkelwagenpagina.php">Winkelwagen</a>
+            </li>
+
             <?php if (!isset($_SESSION['id'])): ?>
 
                 <li class="nav-item">
@@ -54,18 +58,19 @@
 
             <?php endif; ?>
 
-            <?php
-            if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
-                echo '
+            <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
+
                 <li class="nav-item">
-                    <a class="nav-link text-danger font-weight-bold" href="../php/admin.php">
+                    <a class="nav-link text-danger font-weight-bold"
+                       href="../php/admin.php">
                         Admin paneel
                     </a>
-                </li>';
-            }
-            ?>
+                </li>
+
+            <?php endif; ?>
 
         </ul>
 
     </div>
+
 </nav>
