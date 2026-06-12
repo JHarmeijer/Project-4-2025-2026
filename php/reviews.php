@@ -1,75 +1,86 @@
+<?php include '../includes/header.php'; ?>
+
 <!DOCTYPE html>
 <html lang="nl">
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <title>Reviews</title>
   </head>
 
   <body>
-    <form id="review-form">
 
-      <label>Jouw naam</label>
-      <input type="text" id="naam" placeholder="Naam"/>
+    <!-- PAGINA INHOUD -->
+    <div class="pagina-inhoud">
 
-      <label>Over welk product schrijf je een review?</label>
-      <select id="product">
-        <option value="">Producten laden...</option>
-      </select>
+      <form id="review-form">
 
-      <label>Jouw beoordeling</label>
-      <div class="sterren-invoer" id="sterren">
-        <span onclick="setSter(1)">★</span>
-        <span onclick="setSter(2)">★</span>
-        <span onclick="setSter(3)">★</span>
-        <span onclick="setSter(4)">★</span>
-        <span onclick="setSter(5)">★</span>
-      </div>
+        <label>Jouw naam</label>
+        <input type="text" id="naam" placeholder="Naam"/>
 
-      <label>Jouw review</label>
-      <textarea id="review-tekst" placeholder="Wat vind je van het product?"></textarea>
-
-      <label>Pluspunt</label>
-      <input type="text" id="pluspunt" placeholder="Wat vond je goed aan het product?"/>
-
-      <label>Minpunt</label>
-      <input type="text" id="minpunt" placeholder="Wat vond je minder aan het product?"/>
-
-      <button type="button" onclick="verstuurReview()">Review plaatsen</button>
-
-    </form>
-
-    <h2>Geplaatste reviews</h2>
-
-    <div id="filters">
-      <div>
-        <label>Filter op product</label>
-        <select id="filter-product" onchange="filterReviews()">
-          <option value="">Alle producten</option>
+        <label>Over welk product schrijf je een review?</label>
+        <select id="product">
+          <option value="">Producten laden...</option>
         </select>
+
+        <label>Jouw beoordeling</label>
+        <div class="sterren-invoer" id="sterren">
+          <span onclick="setSter(1)">★</span>
+          <span onclick="setSter(2)">★</span>
+          <span onclick="setSter(3)">★</span>
+          <span onclick="setSter(4)">★</span>
+          <span onclick="setSter(5)">★</span>
+        </div>
+
+        <label>Jouw review</label>
+        <textarea id="review-tekst" placeholder="Wat vind je van het product?"></textarea>
+
+        <label>Pluspunt</label>
+        <input type="text" id="pluspunt" placeholder="Wat vond je goed aan het product?"/>
+
+        <label>Minpunt</label>
+        <input type="text" id="minpunt" placeholder="Wat vond je minder aan het product?"/>
+
+        <button type="button" onclick="verstuurReview()">Review plaatsen</button>
+
+      </form>
+
+      <h2>Geplaatste reviews</h2>
+
+      <div id="filters">
+        <div>
+          <label>Filter op product</label>
+          <select id="filter-product" onchange="filterReviews()">
+            <option value="">Alle producten</option>
+          </select>
+        </div>
+        <div>
+          <label>Filter op sterren</label>
+          <select id="filter-sterren" onchange="filterReviews()">
+            <option value="">Alle beoordelingen</option>
+            <option value="5">★★★★★ — 5 sterren</option>
+            <option value="4">★★★★☆ — 4 sterren</option>
+            <option value="3">★★★☆☆ — 3 sterren</option>
+            <option value="2">★★☆☆☆ — 2 sterren</option>
+            <option value="1">★☆☆☆☆ — 1 ster</option>
+          </select>
+        </div>
+        <div>
+          <label>Sorteren op datum</label>
+          <select id="filter-datum" onchange="filterReviews()">
+            <option value="nieuwste">Nieuwste eerst</option>
+            <option value="oudste">Oudste eerst</option>
+          </select>
+        </div>
       </div>
-      <div>
-        <label>Filter op sterren</label>
-        <select id="filter-sterren" onchange="filterReviews()">
-          <option value="">Alle beoordelingen</option>
-          <option value="5">★★★★★ — 5 sterren</option>
-          <option value="4">★★★★☆ — 4 sterren</option>
-          <option value="3">★★★☆☆ — 3 sterren</option>
-          <option value="2">★★☆☆☆ — 2 sterren</option>
-          <option value="1">★☆☆☆☆ — 1 ster</option>
-        </select>
-      </div>
-      <div>
-        <label>Sorteren op datum</label>
-        <select id="filter-datum" onchange="filterReviews()">
-          <option value="nieuwste">Nieuwste eerst</option>
-          <option value="oudste">Oudste eerst</option>
-        </select>
-      </div>
+
+      <div id="review-lijst"></div>
+
     </div>
-
-    <div id="review-lijst"></div>
 
     <script>
       let geselecteerdeSter = 0;
@@ -108,7 +119,6 @@
           .then(reviews => {
             alleReviews = reviews;
 
-            // Productfilter vullen met unieke producten
             const filterProduct = document.getElementById('filter-product');
             const productenGezien = [];
             filterProduct.innerHTML = '<option value="">Alle producten</option>';

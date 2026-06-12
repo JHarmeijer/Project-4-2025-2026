@@ -1,23 +1,41 @@
+/* =====================
+   KLEUREN
+   donkerblauw: #1a2236
+   goud:        #c9a84c
+   goud hover:  #a07830
+   crème:       #f5f0e0
+   ===================== */
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 600px;
+    background: #f0ece0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Pagina inhoud onder de navbar */
+.pagina-inhoud {
+    max-width: 700px;
     margin: 40px auto;
     padding: 0 20px;
-    background: #f5f0eb;
 }
+
+/* =====================
+   FORMULIER
+   ===================== */
 
 form {
     background: white;
     padding: 24px;
     border-radius: 12px;
-    border: 1px solid #e0d8d0;
+    border: 1px solid #d6cfb8;
 }
 
 label {
     display: block;
     font-size: 13px;
     font-weight: bold;
-    color: #555;
+    color: #1a2236;
     margin-bottom: 5px;
     margin-top: 16px;
 }
@@ -25,10 +43,16 @@ label {
 input, textarea {
     width: 100%;
     padding: 8px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #c9a84c;
     border-radius: 8px;
     font-size: 14px;
     box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #a07830;
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
 }
 
 textarea {
@@ -40,29 +64,34 @@ button {
     margin-top: 20px;
     width: 100%;
     padding: 12px;
-    background: #ba7517;
-    color: white;
+    background: #c9a84c;
+    color: #1a2236;
     border: none;
     border-radius: 8px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
+    transition: background 0.15s;
 }
 
 button:hover {
-    background: #854f0b;
+    background: #a07830;
+    color: white;
 }
 
 select {
     width: 100%;
     padding: 8px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #c9a84c;
     border-radius: 8px;
     font-size: 14px;
     box-sizing: border-box;
 }
 
-/* Sterren in het formulier */
+/* =====================
+   STERREN FORMULIER
+   ===================== */
+
 .sterren-invoer {
     display: flex;
     gap: 6px;
@@ -70,16 +99,40 @@ select {
 }
 
 .sterren-invoer span {
-    font-size: 32px;
-    color: #ccc;
+    font-size: 28px;
+    color: #d6cfb8;
     cursor: pointer;
 }
 
 .sterren-invoer span.actief {
-    color: #ba7517;
+    color: #c9a84c;
 }
 
-/* Reviews lijst */
+/* =====================
+   FILTERS
+   ===================== */
+
+#filters {
+    background: white;
+    border: 1px solid #d6cfb8;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    align-items: end;
+}
+
+#filters label {
+    margin-top: 0;
+    font-size: 12px;
+}
+
+/* =====================
+   REVIEWS
+   ===================== */
+
 #review-lijst {
     margin-top: 20px;
     display: flex;
@@ -89,7 +142,7 @@ select {
 
 .review-kaart {
     background: white;
-    border: 1px solid #e0d8d0;
+    border: 1px solid #d6cfb8;
     border-radius: 12px;
     padding: 20px;
 }
@@ -103,20 +156,19 @@ select {
 .review-kaart .reviewer-naam {
     font-size: 15px;
     font-weight: bold;
-    color: #333;
+    color: #1a2236;
     margin-bottom: 6px;
 }
 
-/* Sterren in de reviewkaarten */
 .review-sterren {
     font-size: 18px;
-    color: #ba7517;
+    color: #c9a84c;
     margin-bottom: 8px;
 }
 
 .review-kaart .tekst {
     font-size: 14px;
-    color: #555;
+    color: #444;
     line-height: 1.6;
     margin-bottom: 10px;
 }
@@ -156,20 +208,323 @@ select {
     color: #aaa;
 }
 
-/* Filters */
-#filters {
-    background: white;
-    border: 1px solid #e0d8d0;
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    align-items: end;
+/* =====================
+   HOMEPAGINA — HERO
+   ===================== */
+
+.hero {
+    background: linear-gradient(135deg, #1a2236, #2e3d5e);
+    color: #f5f0e0;
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 4px solid #c9a84c;
 }
 
-#filters label {
-    margin-top: 0;
-    font-size: 12px;
+.hero-inhoud {
+    max-width: 600px;
+    margin: 0 auto;
 }
+
+.hero h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #c9a84c;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 28px;
+    line-height: 1.6;
+    color: #f5f0e0;
+}
+
+.hero-knop {
+    display: inline-block;
+    background: #c9a84c;
+    color: #1a2236;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.hero-knop:hover {
+    background: #a07830;
+    color: white;
+    text-decoration: none;
+}
+
+/* =====================
+   HOMEPAGINA — PRODUCTEN
+   ===================== */
+
+.sectie-titel {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a2236;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #c9a84c;
+}
+
+#producten-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.product-kaart {
+    background: white;
+    border: 1px solid #d6cfb8;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.product-icoon {
+    font-size: 32px;
+    width: 52px;
+    height: 52px;
+    background: #f5f0e0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #d6cfb8;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-info .product-naam {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a2236;
+    margin-bottom: 3px;
+}
+
+.product-info .product-prijs {
+    font-size: 15px;
+    color: #c9a84c;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.product-info .product-voorraad {
+    font-size: 12px;
+    color: #888;
+}
+
+.product-knop {
+    display: inline-block;
+    background: #c9a84c;
+    color: #1a2236;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+
+.product-knop:hover {
+    background: #a07830;
+    color: white;
+    text-decoration: none;
+}
+
+/* =====================
+   SLIDESHOW
+   ===================== */
+
+.slideshow-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.slideshow-venster {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.slideshow-track {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.slide {
+    min-width: 100%;
+    background: white;
+    border: 1px solid #d6cfb8;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    border-top: 4px solid #c9a84c;
+}
+
+.slide-icoon {
+    font-size: 48px;
+    width: 80px;
+    height: 80px;
+    background: #f5f0e0;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+    border: 1px solid #d6cfb8;
+}
+
+.slide-naam {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a2236;
+    margin-bottom: 8px;
+}
+
+.slide-prijs {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c9a84c;
+    margin-bottom: 8px;
+}
+
+.slide-voorraad {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.slideshow-pijl {
+    background: white;
+    border: 1px solid #d6cfb8;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a2236;
+}
+
+.slideshow-pijl:hover {
+    background: #c9a84c;
+    color: #1a2236;
+    border-color: #c9a84c;
+}
+
+.slideshow-puntjes {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.puntje {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d6cfb8;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-block;
+}
+
+.puntje.actief {
+    background: #c9a84c;
+}
+
+.login-wrapper {
+    max-width: 450px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.login-kaart {
+    background: white;
+    border: 1px solid #d6cfb8;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.login-titel {
+    text-align: center;
+    color: #1a2236;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #c9a84c;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #c9a84c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    color: #a07830;
+}
+
+
+.registratie-wrapper {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.registratie-kaart {
+    background: white;
+    border: 1px solid #d6cfb8;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.registratie-titel {
+    text-align: center;
+    color: #1a2236;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #c9a84c;
+}
+
+.registratie-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.registratie-link a {
+    color: #c9a84c;
+    font-weight: bold;
+    text-decoration: none;
+    }
+
+.registratie-link a:hover {
+    color: #a07830;
+ }
