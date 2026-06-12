@@ -34,7 +34,7 @@
             <li class="nav-item"><a class="nav-link" href="../php/admin.php">admin</a></li>
 
 
-            <?php endif; ?>
+            
 
             <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
 
