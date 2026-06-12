@@ -47,6 +47,20 @@ CREATE TABLE bestellingen (
     FOREIGN KEY (coupon_ID)  REFERENCES coupons(coupon_ID)      ON DELETE SET NULL
 );
 
+CREATE TABLE reviews (
+  review_ID INT AUTO_INCREMENT PRIMARY KEY,
+  product_ID INT NOT NULL,
+  naam VARCHAR(100) NOT NULL,
+  beoordeling INT NOT NULL,
+  tekst TEXT NOT NULL,
+  pluspunt VARCHAR(255),
+  minpunt VARCHAR(255),
+  datum TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (product_ID)
+    REFERENCES producten(product_ID)
+    ON DELETE CASCADE
+);
 
 -- Testdata: klant
 INSERT INTO klant (klant_naam, email, wachtwoord, adres, registratie_datum, telefoon_nummer) VALUES
