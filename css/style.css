@@ -13,7 +13,7 @@ form {
     border: 1px solid #e0d8d0;
 }
 
-label{
+label {
     display: block;
     font-size: 13px;
     font-weight: bold;
@@ -22,7 +22,7 @@ label{
     margin-top: 16px;
 }
 
-input, textarea{
+input, textarea {
     width: 100%;
     padding: 8px 12px;
     border: 1px solid #ccc;
@@ -31,12 +31,12 @@ input, textarea{
     box-sizing: border-box;
 }
 
-textarea{
+textarea {
     min-height: 100px;
     resize: vertical;
 }
 
-button{
+button {
     margin-top: 20px;
     width: 100%;
     padding: 12px;
@@ -49,31 +49,127 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background: #854f0b;
 }
 
-.sterren{
-    display: flex;
-    gap: 6px;
-    margin-top: 4px;
-}
-
-.sterren span{
-    font-size: 32px;
-    color: #ccc;
-    cursor: pointer;
-}
-
-.sterren span.actief{
-    color: #ba7517;
-}
-
-select{
+select {
     width: 100%;
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 14px;
     box-sizing: border-box;
+}
+
+/* Sterren in het formulier */
+.sterren-invoer {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.sterren-invoer span {
+    font-size: 32px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.sterren-invoer span.actief {
+    color: #ba7517;
+}
+
+/* Reviews lijst */
+#review-lijst {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-kaart {
+    background: white;
+    border: 1px solid #e0d8d0;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.review-kaart .product-naam {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.review-kaart .reviewer-naam {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+/* Sterren in de reviewkaarten */
+.review-sterren {
+    font-size: 18px;
+    color: #ba7517;
+    margin-bottom: 8px;
+}
+
+.review-kaart .tekst {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.pro-box {
+    background: #eaf3de;
+    color: #27500a;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+}
+
+.con-box {
+    background: #fcebeb;
+    color: #791f1f;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+}
+
+.pro-box strong, .con-box strong {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 3px;
+    opacity: 0.7;
+}
+
+.review-kaart .datum {
+    font-size: 11px;
+    color: #aaa;
+}
+
+/* Filters */
+#filters {
+    background: white;
+    border: 1px solid #e0d8d0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    align-items: end;
+}
+
+#filters label {
+    margin-top: 0;
+    font-size: 12px;
 }

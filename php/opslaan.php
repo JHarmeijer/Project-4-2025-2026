@@ -23,7 +23,7 @@ $minpunt     = $conn->real_escape_string($minpunt);
 
 // Opslaan in de database
 $sql = "INSERT INTO reviews 
-        (product_id, naam, beoordeling, tekst, pluspunt, minpunt) 
+        (product_ID, naam, beoordeling, tekst, pluspunt, minpunt) 
         VALUES 
         ('$product_id', '$naam', '$beoordeling', '$tekst', '$pluspunt', '$minpunt')";
 
