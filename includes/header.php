@@ -5,7 +5,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
 
-    <a class="navbar-brand d-flex align-items-center" href="../index.php">
+    <a class="navbar-brand d-flex align-items-center" href="../php/index.php">
         <img src="../assets/Chef's Choice Logo.png"
              alt="Chef's Choice Logo"
              class="navbar-logo">
