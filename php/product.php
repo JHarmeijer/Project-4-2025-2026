@@ -57,7 +57,7 @@ $result = $conn->query($sql);
             <?php } ?>
         </div>
         <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">Bestellen</button>
+            <button type="submit" name="toevoegen"class="btn btn-primary">Bestellen</button>
         </div>
     </form>
 </div>
