@@ -23,7 +23,7 @@ include "../includes/db_connect.php";
       <div class="hero-inhoud">
         <h1>Welkom bij Chef's Choice</h1>
         <p>De beste keukenproducten voor thuis en professioneel gebruik. Ontdek ons assortiment en bestel vandaag nog.</p>
-        <a href="../php/bestellen.php" class="hero-knop">Bekijk producten</a>
+        <a href="../php/product.php" class="hero-knop">Bekijk producten</a>
       </div>
     </div>
 

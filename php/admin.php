@@ -77,6 +77,99 @@ if (isset($_POST['rol_aanpassen'])) {
     }
 }
 
+// ==========================================
+// COUPONS BEHEREN
+// ==========================================
+
+if (isset($_GET['verwijder_coupon'])) {
+    $coupon_ID = (int) $_GET['verwijder_coupon'];
+    $stmt = $conn->prepare("DELETE FROM coupons WHERE coupon_ID = ?");
+    $stmt->bind_param("i", $coupon_ID);
+    $stmt->execute();
+    $stmt->close();
+    $melding = "Coupon verwijderd.";
+}
+
+if (isset($_GET['toggle_coupon'])) {
+    $coupon_ID = (int) $_GET['toggle_coupon'];
+    $stmt = $conn->prepare("UPDATE coupons SET actief = NOT actief WHERE coupon_ID = ?");
+    $stmt->bind_param("i", $coupon_ID);
+    $stmt->execute();
+    $stmt->close();
+    $melding = "Coupon status gewijzigd.";
+}
+
+if (isset($_POST['coupon_toevoegen'])) {
+    $coupon_code     = trim($_POST['coupon_code']);
+    $korting_type    = $_POST['korting_type'];
+    $kortings_waarde = (float) $_POST['kortings_waarde'];
+
+    if (empty($coupon_code) || $kortings_waarde <= 0) {
+        $melding = "Vul alle verplichte couponvelden in.";
+        $melding_type = "err";
+    } else {
+        $stmt = $conn->prepare("INSERT INTO coupons (coupon_code, korting_type, kortings_waarde, actief) VALUES (?, ?, ?, 1)");
+        $stmt->bind_param("ssd", $coupon_code, $korting_type, $kortings_waarde);
+        if ($stmt->execute()) {
+            $melding = "Coupon toegevoegd.";
+        } else {
+            $melding = "Couponcode bestaat al, of er ging iets mis.";
+            $melding_type = "err";
+        }
+        $stmt->close();
+    }
+}
+
+if (isset($_POST['coupon_aanpassen'])) {
+    $coupon_ID       = (int) $_POST['coupon_ID'];
+    $coupon_code     = trim($_POST['coupon_code']);
+    $korting_type    = $_POST['korting_type'];
+    $kortings_waarde = (float) $_POST['kortings_waarde'];
+
+    if (empty($coupon_code) || $kortings_waarde <= 0) {
+        $melding = "Vul alle verplichte couponvelden in.";
+        $melding_type = "err";
+    } else {
+        $stmt = $conn->prepare("UPDATE coupons SET coupon_code = ?, korting_type = ?, kortings_waarde = ? WHERE coupon_ID = ?");
+        $stmt->bind_param("ssdi", $coupon_code, $korting_type, $kortings_waarde, $coupon_ID);
+        if ($stmt->execute()) {
+            $melding = "Coupon bijgewerkt.";
+        } else {
+            $melding = "Couponcode bestaat al, of er ging iets mis.";
+            $melding_type = "err";
+        }
+        $stmt->close();
+    }
+}
+
+// ==========================================
+// BESTELLINGEN BEHEREN
+// ==========================================
+
+if (isset($_GET['verwijder_bestelling'])) {
+    $bestelling_ID = (int) $_GET['verwijder_bestelling'];
+    $stmt = $conn->prepare("DELETE FROM bestellingen WHERE bestelling_ID = ?");
+    $stmt->bind_param("i", $bestelling_ID);
+    $stmt->execute();
+    $stmt->close();
+    $melding = "Bestelling verwijderd.";
+}
+
+if (isset($_POST['bestelling_aanpassen'])) {
+    $bestelling_ID = (int) $_POST['bestelling_ID'];
+    $klant_ID_b    = (int) $_POST['klant_ID_b'];
+    $product_ID_b  = (int) $_POST['product_ID_b'];
+    $coupon_ID_b   = ($_POST['coupon_ID_b'] !== '') ? (int) $_POST['coupon_ID_b'] : null;
+    $datum_aankoop = ($_POST['datum_aankoop'] !== '') ? $_POST['datum_aankoop'] : null;
+    $groep_ID      = ($_POST['groep_ID'] !== '') ? (int) $_POST['groep_ID'] : null;
+
+    $stmt = $conn->prepare("UPDATE bestellingen SET klant_ID = ?, product_ID = ?, coupon_ID = ?, datum_aankoop = ?, groep_ID = ? WHERE bestelling_ID = ?");
+    $stmt->bind_param("iiisii", $klant_ID_b, $product_ID_b, $coupon_ID_b, $datum_aankoop, $groep_ID, $bestelling_ID);
+    $stmt->execute();
+    $stmt->close();
+    $melding = "Bestelling bijgewerkt.";
+}
+
 $producten = $conn->query("
     SELECT *
     FROM producten
@@ -130,6 +223,24 @@ if (!empty($zoekterm)) {
         ORDER BY klant_ID ASC
     ");
 }
+
+$coupons = $conn->query("
+    SELECT *
+    FROM coupons
+    ORDER BY coupon_ID ASC
+");
+
+$bestellingen = $conn->query("
+    SELECT b.*, k.klant_naam, p.product_naam
+    FROM bestellingen b
+    JOIN klant k ON b.klant_ID = k.klant_ID
+    JOIN producten p ON b.product_ID = p.product_ID
+    ORDER BY b.bestelling_ID DESC
+");
+
+$alle_klanten_lijst   = $conn->query("SELECT klant_ID, klant_naam FROM klant ORDER BY klant_naam ASC")->fetch_all(MYSQLI_ASSOC);
+$alle_producten_lijst = $conn->query("SELECT product_ID, product_naam FROM producten ORDER BY product_naam ASC")->fetch_all(MYSQLI_ASSOC);
+$alle_coupons_lijst   = $conn->query("SELECT coupon_ID, coupon_code FROM coupons ORDER BY coupon_code ASC")->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -174,7 +285,7 @@ if (!empty($zoekterm)) {
                 <div class="toevoeg-grid">
                     <div>
                         <label>Productnaam *</label>
-                        <input type="text" name="product_naam" placeholder="bijv. Caesar Salade" required>
+                        <input type="text" name="product_naam" placeholder="bijv. een Chef's mes" required>
                     </div>
                     <div>
                         <label>Prijs (€) *</label>
@@ -310,6 +421,167 @@ if (!empty($zoekterm)) {
                                 <?php else: ?>
                                     <span class="jij-badge">Dit ben jij</span>
                                 <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         COUPONS BEHEREN
+    ========================================== -->
+    <div class="admin-kaart">
+        <div class="admin-kaart-header">
+            <h3>Coupons beheren</h3>
+        </div>
+        <div class="admin-kaart-body">
+
+            <div class="sub-label">Coupon toevoegen</div>
+            <form method="POST">
+                <div class="toevoeg-grid">
+                    <div>
+                        <label>Coupon code *</label>
+                        <input type="text" name="coupon_code" placeholder="bijv. ZOMER10" required>
+                    </div>
+                    <div>
+                        <label>Type *</label>
+                        <select name="korting_type" required>
+                            <option value="percentage">Percentage (%)</option>
+                            <option value="vast_bedrag">Vast bedrag (€)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Waarde *</label>
+                        <input type="number" name="kortings_waarde" placeholder="0.00" step="0.01" min="0" required>
+                    </div>
+                    <div>
+                        <label>&nbsp;</label>
+                        <button type="submit" name="coupon_toevoegen" class="btn-opslaan" style="padding: 8px 18px; font-size: 13px;">
+                            + Toevoegen
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="sub-label">Huidige coupons</div>
+            <table class="admin-tabel">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Coupon bewerken</th>
+                        <th>Status</th>
+                        <th>Verwijderen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($coupon = $coupons->fetch_assoc()): ?>
+                        <tr>
+                            <td class="id-cel">#<?= $coupon['coupon_ID'] ?></td>
+                            <td>
+                                <form method="POST" class="inline-form" style="flex-wrap: wrap; gap: 6px;">
+                                    <input type="hidden" name="coupon_ID" value="<?= $coupon['coupon_ID'] ?>">
+                                    <input type="text" name="coupon_code" value="<?= htmlspecialchars($coupon['coupon_code']) ?>" style="width: 110px;">
+                                    <select name="korting_type">
+                                        <option value="percentage" <?= $coupon['korting_type'] === 'percentage' ? 'selected' : '' ?>>%</option>
+                                        <option value="vast_bedrag" <?= $coupon['korting_type'] === 'vast_bedrag' ? 'selected' : '' ?>>€</option>
+                                    </select>
+                                    <input type="number" name="kortings_waarde" value="<?= $coupon['kortings_waarde'] ?>" step="0.01" min="0" style="width: 75px;">
+                                    <button type="submit" name="coupon_aanpassen" class="btn-opslaan">Opslaan</button>
+                                </form>
+                            </td>
+                            <td>
+                                <?php if ($coupon['actief']): ?>
+                                    <span style="padding:3px 8px; border-radius:4px; font-size:12px; font-weight:600; background:#d4edda; color:#155724;">Actief</span>
+                                <?php else: ?>
+                                    <span style="padding:3px 8px; border-radius:4px; font-size:12px; font-weight:600; background:#f1f1f1; color:#888;">Inactief</span>
+                                <?php endif; ?>
+                                <a href="?toggle_coupon=<?= $coupon['coupon_ID'] ?>" class="btn-opslaan" style="margin-left: 6px;">
+                                    <?= $coupon['actief'] ? 'Deactiveer' : 'Activeer' ?>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="?verwijder_coupon=<?= $coupon['coupon_ID'] ?>"
+                                   class="btn-verwijder"
+                                   onclick="return confirm('Weet je zeker dat je deze coupon wilt verwijderen?')">
+                                    ✕ Verwijder
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         BESTELLINGEN BEHEREN
+    ========================================== -->
+    <div class="admin-kaart">
+        <div class="admin-kaart-header">
+            <h3>Bestellingen beheren</h3>
+        </div>
+        <div class="admin-kaart-body">
+
+            <table class="admin-tabel">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Klant</th>
+                        <th>Product</th>
+                        <th>Coupon</th>
+                        <th>Datum</th>
+                        <th>Groep ID</th>
+                        <th>Verwijderen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($bestelling = $bestellingen->fetch_assoc()): ?>
+                        <tr>
+                            <td class="id-cel">#<?= $bestelling['bestelling_ID'] ?></td>
+                            <td colspan="5">
+                                <form method="POST" class="inline-form" style="flex-wrap: wrap; gap: 6px;">
+                                    <input type="hidden" name="bestelling_ID" value="<?= $bestelling['bestelling_ID'] ?>">
+
+                                    <select name="klant_ID_b">
+                                        <?php foreach ($alle_klanten_lijst as $k): ?>
+                                            <option value="<?= $k['klant_ID'] ?>" <?= $k['klant_ID'] == $bestelling['klant_ID'] ? 'selected' : '' ?>>
+                                                <?= htmlspecialchars($k['klant_naam']) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    <select name="product_ID_b">
+                                        <?php foreach ($alle_producten_lijst as $p): ?>
+                                            <option value="<?= $p['product_ID'] ?>" <?= $p['product_ID'] == $bestelling['product_ID'] ? 'selected' : '' ?>>
+                                                <?= htmlspecialchars($p['product_naam']) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    <select name="coupon_ID_b">
+                                        <option value="">Geen coupon</option>
+                                        <?php foreach ($alle_coupons_lijst as $c): ?>
+                                            <option value="<?= $c['coupon_ID'] ?>" <?= $c['coupon_ID'] == $bestelling['coupon_ID'] ? 'selected' : '' ?>>
+                                                <?= htmlspecialchars($c['coupon_code']) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+
+                                    <input type="date" name="datum_aankoop" value="<?= $bestelling['datum_aankoop'] ?>" style="width: 140px;">
+
+                                    <input type="number" name="groep_ID" value="<?= htmlspecialchars($bestelling['groep_ID'] ?? '') ?>" placeholder="groep ID" style="width: 100px;">
+
+                                    <button type="submit" name="bestelling_aanpassen" class="btn-opslaan">Opslaan</button>
+                                </form>
+                            </td>
+                            <td>
+                                <a href="?verwijder_bestelling=<?= $bestelling['bestelling_ID'] ?>"
+                                   class="btn-verwijder"
+                                   onclick="return confirm('Weet je zeker dat je deze bestelling wilt verwijderen?')">
+                                    ✕ Verwijder
+                                </a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
