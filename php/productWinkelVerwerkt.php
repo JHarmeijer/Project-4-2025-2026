@@ -14,16 +14,22 @@ if (empty($winkelwagen)) {
 
 $klant_id = $_SESSION['gebruiker_id'];
 $datum    = date('Y-m-d');
+$groep_ID  = time(); // unieke bestelling-groep
 
-// ✅ Uniek groep_ID aanmaken voor alle producten in deze bestelling
-// time() geeft het huidige tijdstempel als uniek getal
-$groep_ID = time();
+/* =========================
+   COUPON OPHALEN
+========================= */
 
-// Coupon ID ophalen uit database
 $coupon_ID = null;
+
 if (isset($_SESSION['coupon'])) {
     $couponCode = $_SESSION['coupon']['code'];
-    $stmt = $conn->prepare("SELECT coupon_ID FROM coupons WHERE coupon_code = ?");
+
+    $stmt = $conn->prepare("
+        SELECT coupon_ID 
+        FROM coupons 
+        WHERE coupon_code = ?
+    ");
     $stmt->bind_param("s", $couponCode);
     $stmt->execute();
     $stmt->bind_result($coupon_ID);
@@ -33,11 +39,18 @@ if (isset($_SESSION['coupon'])) {
 
 $fout = false;
 
-// ✅ Loop door winkelwagen sessie
+/* =========================
+   BESTELLINGEN VERWERKEN
+========================= */
+
 foreach ($winkelwagen as $product_ID => $aantal) {
 
-    // Voorraad controleren
-    $stmt = $conn->prepare("SELECT voorraad FROM producten WHERE product_ID = ?");
+    // voorraad checken
+    $stmt = $conn->prepare("
+        SELECT voorraad 
+        FROM producten 
+        WHERE product_ID = ?
+    ");
     $stmt->bind_param("i", $product_ID);
     $stmt->execute();
     $stmt->bind_result($voorraad);
@@ -45,35 +58,110 @@ foreach ($winkelwagen as $product_ID => $aantal) {
     $stmt->close();
 
     if ($voorraad < $aantal) {
-        echo "Niet genoeg voorraad voor product #{$product_ID}.<br>";
         $fout = true;
         continue;
     }
 
-    // ✅ Bestelling invoegen met groep_ID
+    // bestelling opslaan
     $stmt = $conn->prepare("
-        INSERT INTO bestellingen (klant_ID, product_ID, coupon_ID, datum_aankoop, groep_ID) 
+        INSERT INTO bestellingen 
+        (klant_ID, product_ID, coupon_ID, datum_aankoop, groep_ID)
         VALUES (?, ?, ?, ?, ?)
     ");
     $stmt->bind_param("iiisi", $klant_id, $product_ID, $coupon_ID, $datum, $groep_ID);
     $stmt->execute();
     $stmt->close();
 
-    // Voorraad verlagen
-    $stmt = $conn->prepare("UPDATE producten SET voorraad = voorraad - ? WHERE product_ID = ?");
+    // voorraad verlagen
+    $stmt = $conn->prepare("
+        UPDATE producten 
+        SET voorraad = voorraad - ? 
+        WHERE product_ID = ?
+    ");
     $stmt->bind_param("ii", $aantal, $product_ID);
     $stmt->execute();
     $stmt->close();
 }
 
-// Winkelwagen en coupon leegmaken
+/* =========================
+   WINKELWAGEN LEEGMAKEN
+========================= */
+
 unset($_SESSION['winkelwagen']);
 unset($_SESSION['coupon']);
 $conn->close();
 
-if (!$fout) {
-    echo "✅ Bestelling #$groep_ID succesvol geplaatst!";
-} else {
-    echo "⚠️ Bestelling geplaatst, maar sommige producten hadden onvoldoende voorraad.";
-}
+/* =========================
+   MELDING
+========================= */
+
+$ok = !$fout;
+
+$melding = $ok
+    ? "Bestelling #$groep_ID succesvol geplaatst!"
+    : "Bestelling geplaatst, maar sommige producten waren niet op voorraad.";
 ?>
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/style.css">
+<title>Bestelling geplaatst</title>
+</head>
+
+<body>
+
+<div class="pagina-inhoud">
+
+    <div class="admin-kaart">
+
+        <div class="admin-kaart-header">
+            <h3>🧾 Bestelling bevestiging</h3>
+        </div>
+
+        <div class="admin-kaart-body" style="text-align:center;">
+
+            <?php if ($ok): ?>
+
+                <div class="melding-ok" style="font-size:16px;">
+                    ✅ <?= htmlspecialchars($melding) ?>
+                </div>
+
+                <p style="margin-top:10px; color:#444;">
+                    Bedankt voor je bestelling! We gaan er direct mee aan de slag.
+                </p>
+
+                <div style="margin-top:20px;">
+                    <a href="account.php#bestellingen" class="product-knop">
+                        Bekijk mijn bestellingen
+                    </a>
+                </div>
+
+            <?php else: ?>
+
+                <div class="melding-err" style="font-size:16px;">
+                    ⚠️ <?= htmlspecialchars($melding) ?>
+                </div>
+
+                <p style="margin-top:10px; color:#444;">
+                    Controleer je winkelwagen en probeer het opnieuw.
+                </p>
+
+                <div style="margin-top:20px;">
+                    <a href="winkelwagenpagina.php" class="product-knop">
+                        Terug naar winkelwagen
+                    </a>
+                </div>
+
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
