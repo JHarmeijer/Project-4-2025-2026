@@ -1,8 +1,4 @@
 <?php
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-
 require __DIR__ . '/../includes/db_connect.php';
 
 // Gegevens ophalen die vanuit het formulier binnenkomen
