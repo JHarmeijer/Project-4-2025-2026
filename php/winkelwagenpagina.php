@@ -3,7 +3,7 @@ session_start();
 include "../includes/header.php";
 include "../includes/db_connect.php";
 
-if (!isset($_SESSION['klant_ID'])) {
+if (!isset($_SESSION['gebruiker_id'])) {
     header('Location: inlog.php');
     exit;
 }
