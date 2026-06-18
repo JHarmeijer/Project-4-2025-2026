@@ -91,7 +91,7 @@ include "../includes/db_connect.php";
       let alleReviews = [];
 
       /* PRODUCTEN LADEN */
-      fetch("http://localhost/Project%204%20Chef's%20Choice/Project-4-2025-2026/php/producten.php")
+      fetch("producten.php")
         .then(response => response.json())
         .then(producten => {
           const select = document.getElementById("product");
@@ -118,7 +118,7 @@ include "../includes/db_connect.php";
 
       /* REVIEWS LADEN */
       function laadReviews() {
-        fetch("http://localhost/Project%204%20Chef's%20Choice/Project-4-2025-2026/php/reviews_ophalen.php")
+        fetch("reviews_ophalen.php")
           .then(response => response.json())
           .then(reviews => {
             alleReviews = reviews;
@@ -220,7 +220,7 @@ include "../includes/db_connect.php";
         formData.append("pluspunt",    pluspunt);
         formData.append("minpunt",     minpunt);
 
-        fetch("http://localhost/Project%204%20Chef's%20Choice/Project-4-2025-2026/php/opslaan.php", {
+        fetch("opslaan.php", {
           method: "POST",
           body: formData
         })
