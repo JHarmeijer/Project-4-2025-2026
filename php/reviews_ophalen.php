@@ -1,4 +1,7 @@
 <?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+
 require __DIR__ . '/../includes/db_connect.php';
 
 $sql = "SELECT r.naam, r.beoordeling, r.tekst, r.pluspunt, r.minpunt, r.datum, p.product_naam
