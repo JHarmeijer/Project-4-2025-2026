@@ -114,7 +114,7 @@ $reviews = $stmtReviews->get_result();
     <!-- ================= PROFIEL ================= -->
     <div class="admin-kaart" id="profiel">
         <div class="admin-kaart-header">
-            <h3>👤 Mijn Account</h3>
+            <h3>Mijn Account</h3>
         </div>
         <div class="admin-kaart-body">
             <p><b>Naam:</b> <?= htmlspecialchars($klant['klant_naam']) ?></p>
