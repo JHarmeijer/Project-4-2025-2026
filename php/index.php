@@ -22,6 +22,7 @@ include "../includes/db_connect.php";
      HERO SECTIE
      ============================================ -->
 <section class="hero">
+  <div class="hero-overlay">
     <div class="hero-inhoud">
         <h1>Welkom bij Chef's Choice</h1>
         <p>De beste keukenproducten voor thuis en professioneel gebruik. Ontdek ons assortiment en bestel vandaag nog.</p>

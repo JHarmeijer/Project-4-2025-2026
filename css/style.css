@@ -1,16 +1,47 @@
-/* =====================
-   KLEUREN
-   donkerblauw: #1a2236
-   goud:        #c9a84c
-   goud hover:  #a07830
-   crème:       #f5f0e0
-   ===================== */
+/* =========================================================
+   KLEUREN — centraal gedefinieerd, gebruikt via var(--naam)
+   ========================================================= */
+
+:root {
+    --donkerblauw: #1a2236;
+    --goud: #c9a84c;
+    --goud-hover: #a07830;
+    --creme: #f5f0e0;
+
+    --wit: #ffffff;
+    --rand: #d6cfb8;
+    --achtergrond: #f0ece0;
+
+    --tekst-grijs: #888;
+    --tekst-grijs-licht: #aaa;
+    --tekst-donker: #444;
+
+    --groen-bg: #eaf3de;
+    --groen-tekst: #27500a;
+    --groen-rand: #c0dd97;
+
+    --rood-bg: #fcebeb;
+    --rood-tekst: #791f1f;
+    --rood-tekst-donker: #701818;
+    --rood-rand: #f7c1c1;
+    --rood-link: #a03030;
+
+    --oranje: #d35400;
+    --oranje-hover: #e67e22;
+
+    --radius: 12px;
+    --radius-klein: 8px;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f0ece0;
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--achtergrond);
 }
 
 .pagina-inhoud {
@@ -24,34 +55,36 @@ body {
    ===================== */
 
 form {
-    background: white;
     padding: 24px;
-    border-radius: 12px;
-    border: 1px solid #d6cfb8;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-radius: var(--radius);
 }
 
 label {
     display: block;
+    margin-top: 16px;
+    margin-bottom: 5px;
     font-size: 13px;
     font-weight: bold;
-    color: #1a2236;
-    margin-bottom: 5px;
-    margin-top: 16px;
+    color: var(--donkerblauw);
 }
 
-input, textarea {
+input,
+textarea,
+select {
     width: 100%;
     padding: 8px 12px;
-    border: 1px solid #c9a84c;
-    border-radius: 8px;
     font-size: 14px;
-    box-sizing: border-box;
+    border: 1px solid var(--goud);
+    border-radius: var(--radius-klein);
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     outline: none;
-    border-color: #a07830;
-    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+    border-color: var(--goud-hover);
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
 }
 
 textarea {
@@ -60,31 +93,22 @@ textarea {
 }
 
 button {
-    margin-top: 20px;
     width: 100%;
+    margin-top: 20px;
     padding: 12px;
-    background: #c9a84c;
-    color: #1a2236;
-    border: none;
-    border-radius: 8px;
     font-size: 14px;
     font-weight: bold;
+    color: var(--donkerblauw);
+    background: var(--goud);
+    border: none;
+    border-radius: var(--radius-klein);
     cursor: pointer;
     transition: background 0.15s;
 }
 
 button:hover {
-    background: #a07830;
-    color: white;
-}
-
-select {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #c9a84c;
-    border-radius: 8px;
-    font-size: 14px;
-    box-sizing: border-box;
+    color: var(--wit);
+    background: var(--goud-hover);
 }
 
 /* =====================
@@ -99,12 +123,12 @@ select {
 
 .sterren-invoer span {
     font-size: 28px;
-    color: #d6cfb8;
+    color: var(--rand);
     cursor: pointer;
 }
 
 .sterren-invoer span.actief {
-    color: #c9a84c;
+    color: var(--goud);
 }
 
 /* =====================
@@ -112,15 +136,15 @@ select {
    ===================== */
 
 #filters {
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
     align-items: end;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-radius: var(--radius);
 }
 
 #filters label {
@@ -133,43 +157,48 @@ select {
    ===================== */
 
 #review-lijst {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-top: 20px;
 }
 
 .review-kaart {
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 12px;
     padding: 20px;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-radius: var(--radius);
 }
 
 .review-kaart .product-naam {
-    font-size: 12px;
-    color: #888;
     margin-bottom: 4px;
+    font-size: 12px;
+    color: var(--tekst-grijs);
 }
 
 .review-kaart .reviewer-naam {
+    margin-bottom: 6px;
     font-size: 15px;
     font-weight: bold;
-    color: #1a2236;
-    margin-bottom: 6px;
+    color: var(--donkerblauw);
 }
 
 .review-sterren {
-    font-size: 18px;
-    color: #c9a84c;
     margin-bottom: 8px;
+    font-size: 18px;
+    color: var(--goud);
 }
 
 .review-kaart .tekst {
-    font-size: 14px;
-    color: #444;
-    line-height: 1.6;
     margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--tekst-donker);
+}
+
+.review-kaart .datum {
+    font-size: 11px;
+    color: var(--tekst-grijs-licht);
 }
 
 .pros-cons {
@@ -179,32 +208,29 @@ select {
     margin-bottom: 10px;
 }
 
-.pro-box {
-    background: #eaf3de;
-    color: #27500a;
-    border-radius: 8px;
+.pro-box,
+.con-box {
     padding: 8px 10px;
     font-size: 13px;
+    border-radius: var(--radius-klein);
+}
+
+.pro-box {
+    color: var(--groen-tekst);
+    background: var(--groen-bg);
 }
 
 .con-box {
-    background: #fcebeb;
-    color: #791f1f;
-    border-radius: 8px;
-    padding: 8px 10px;
-    font-size: 13px;
+    color: var(--rood-tekst);
+    background: var(--rood-bg);
 }
 
-.pro-box strong, .con-box strong {
+.pro-box strong,
+.con-box strong {
     display: block;
-    font-size: 11px;
     margin-bottom: 3px;
-    opacity: 0.7;
-}
-
-.review-kaart .datum {
     font-size: 11px;
-    color: #aaa;
+    opacity: 0.7;
 }
 
 /* =====================
@@ -212,49 +238,52 @@ select {
    ===================== */
 
 .hero {
-    background: linear-gradient(135deg, #1a2236, #2e3d5e);
-    color: #f5f0e0;
-    padding: 80px 20px;
+    min-height: 70vh;
+    background-image: url("../assets/keuken.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 2rem;
     text-align: center;
-    border-bottom: 4px solid #c9a84c;
+    background: rgba(0, 0, 0, 0.45);
 }
 
 .hero-inhoud {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 700px;
+    color: var(--wit);
 }
 
-.hero h1 {
-    font-size: 32px;
-    font-weight: bold;
-    color: #c9a84c;
-    margin-bottom: 16px;
+.hero-inhoud h1 {
+    margin-bottom: 1rem;
+    font-size: 3rem;
 }
 
-.hero p {
-    font-size: 16px;
-    opacity: 0.9;
-    margin-bottom: 28px;
+.hero-inhoud p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
     line-height: 1.6;
-    color: #f5f0e0;
 }
 
 .hero-knop {
     display: inline-block;
-    background: #c9a84c;
-    color: #1a2236;
-    font-weight: bold;
-    font-size: 14px;
     padding: 12px 28px;
-    border-radius: 8px;
+    font-weight: bold;
+    color: var(--wit);
     text-decoration: none;
-    transition: background 0.15s;
+    background-color: var(--oranje);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .hero-knop:hover {
-    background: #a07830;
-    color: white;
-    text-decoration: none;
+    background-color: var(--oranje-hover);
 }
 
 /* =====================
@@ -262,12 +291,12 @@ select {
    ===================== */
 
 .sectie-titel {
-    font-size: 20px;
-    font-weight: bold;
-    color: #1a2236;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #c9a84c;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--donkerblauw);
+    border-bottom: 2px solid var(--goud);
 }
 
 #producten-grid {
@@ -277,26 +306,26 @@ select {
 }
 
 .product-kaart {
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 12px;
-    padding: 16px 20px;
     display: flex;
     align-items: center;
     gap: 16px;
+    padding: 16px 20px;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-radius: var(--radius);
 }
 
 .product-icoon {
-    font-size: 32px;
-    width: 52px;
-    height: 52px;
-    background: #f5f0e0;
-    border-radius: 10px;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    border: 1px solid #d6cfb8;
+    width: 52px;
+    height: 52px;
+    font-size: 32px;
+    background: var(--creme);
+    border: 1px solid var(--rand);
+    border-radius: 10px;
 }
 
 .product-info {
@@ -304,41 +333,41 @@ select {
 }
 
 .product-info .product-naam {
+    margin-bottom: 3px;
     font-size: 15px;
     font-weight: bold;
-    color: #1a2236;
-    margin-bottom: 3px;
+    color: var(--donkerblauw);
 }
 
 .product-info .product-prijs {
-    font-size: 15px;
-    color: #c9a84c;
-    font-weight: bold;
     margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--goud);
 }
 
 .product-info .product-voorraad {
     font-size: 12px;
-    color: #888;
+    color: var(--tekst-grijs);
 }
 
 .product-knop {
     display: inline-block;
-    background: #c9a84c;
-    color: #1a2236;
+    flex-shrink: 0;
+    padding: 8px 18px;
     font-size: 13px;
     font-weight: bold;
-    padding: 8px 18px;
-    border-radius: 8px;
+    color: var(--donkerblauw);
     text-decoration: none;
-    flex-shrink: 0;
+    background: var(--goud);
+    border-radius: var(--radius-klein);
     transition: background 0.15s;
 }
 
 .product-knop:hover {
-    background: #a07830;
-    color: white;
+    color: var(--wit);
     text-decoration: none;
+    background: var(--goud-hover);
 }
 
 /* =====================
@@ -354,7 +383,7 @@ select {
 .slideshow-venster {
     flex: 1;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: var(--radius);
 }
 
 .slideshow-track {
@@ -363,79 +392,79 @@ select {
 }
 
 .slide {
+    box-sizing: border-box;
     min-width: 100%;
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 12px;
     padding: 40px 20px;
     text-align: center;
-    box-sizing: border-box;
-    border-top: 4px solid #c9a84c;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-top: 4px solid var(--goud);
+    border-radius: var(--radius);
 }
 
 .slide-icoon {
-    font-size: 48px;
-    width: 80px;
-    height: 80px;
-    background: #f5f0e0;
-    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 80px;
+    height: 80px;
     margin: 0 auto 16px auto;
-    border: 1px solid #d6cfb8;
+    font-size: 48px;
+    background: var(--creme);
+    border: 1px solid var(--rand);
+    border-radius: 16px;
 }
 
 .slide-foto {
+    display: block;
     width: 110px;
     height: 110px;
-    object-fit: cover;
-    border-radius: 16px;
     margin: 0 auto 16px auto;
-    display: block;
-    border: 1px solid #d6cfb8;
+    object-fit: cover;
+    border: 1px solid var(--rand);
+    border-radius: 16px;
 }
 
 .slide-naam {
+    margin-bottom: 8px;
     font-size: 20px;
     font-weight: bold;
-    color: #1a2236;
-    margin-bottom: 8px;
+    color: var(--donkerblauw);
 }
 
 .slide-prijs {
+    margin-bottom: 8px;
     font-size: 24px;
     font-weight: bold;
-    color: #c9a84c;
-    margin-bottom: 8px;
+    color: var(--goud);
 }
 
 .slide-voorraad {
-    font-size: 13px;
-    color: #888;
     margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--tekst-grijs);
 }
 
 .slideshow-pijl {
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     height: 40px;
     font-size: 16px;
+    color: var(--donkerblauw);
     cursor: pointer;
-    flex-shrink: 0;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-radius: 50%;
     transition: background 0.15s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #1a2236;
 }
 
 .slideshow-pijl:hover {
-    background: #c9a84c;
-    color: #1a2236;
-    border-color: #c9a84c;
+    color: var(--donkerblauw);
+    background: var(--goud);
+    border-color: var(--goud);
 }
 
 .slideshow-puntjes {
@@ -446,103 +475,73 @@ select {
 }
 
 .puntje {
+    display: inline-block;
     width: 10px;
     height: 10px;
+    background: var(--rand);
     border-radius: 50%;
-    background: #d6cfb8;
     cursor: pointer;
     transition: background 0.2s;
-    display: inline-block;
 }
 
 .puntje.actief {
-    background: #c9a84c;
+    background: var(--goud);
 }
 
 /* =====================
-   LOGIN
+   LOGIN / REGISTRATIE
    ===================== */
+
+.login-wrapper,
+.registratie-wrapper {
+    margin: 60px auto;
+    padding: 0 20px;
+}
 
 .login-wrapper {
     max-width: 450px;
-    margin: 60px auto;
-    padding: 0 20px;
 }
-
-.login-kaart {
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 12px;
-    padding: 30px;
-}
-
-.login-titel {
-    text-align: center;
-    color: #1a2236;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 25px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #c9a84c;
-}
-
-.login-link {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-.login-link a {
-    color: #c9a84c;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.login-link a:hover {
-    color: #a07830;
-}
-
-/* =====================
-   REGISTRATIE
-   ===================== */
 
 .registratie-wrapper {
     max-width: 500px;
-    margin: 60px auto;
-    padding: 0 20px;
 }
 
+.login-kaart,
 .registratie-kaart {
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 12px;
     padding: 30px;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-radius: var(--radius);
 }
 
+.login-titel,
 .registratie-titel {
-    text-align: center;
-    color: #1a2236;
-    font-size: 28px;
-    font-weight: bold;
     margin-bottom: 25px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #c9a84c;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--donkerblauw);
+    text-align: center;
+    border-bottom: 2px solid var(--goud);
 }
 
+.login-link,
 .registratie-link {
-    text-align: center;
     margin-top: 20px;
     font-size: 14px;
+    text-align: center;
 }
 
+.login-link a,
 .registratie-link a {
-    color: #c9a84c;
     font-weight: bold;
+    color: var(--goud);
     text-decoration: none;
 }
 
+.login-link a:hover,
 .registratie-link a:hover {
-    color: #a07830;
+    color: var(--goud-hover);
 }
 
 /* =====================
@@ -550,42 +549,42 @@ select {
    ===================== */
 
 .product-bestel-kaart {
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 12px;
-    overflow: hidden;
-    height: 100%;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-radius: var(--radius);
 }
 
 .product-bestel-img-wrapper {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    border-bottom: 1px solid #d6cfb8;
-    background: #f5f0e0;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: var(--creme);
+    border-bottom: 1px solid var(--rand);
 }
 
 .product-bestel-geen-img {
-    background: #f5f0e0;
+    background: var(--creme);
 }
 
 .product-bestel-img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
 .product-bestel-body {
-    padding: 16px 18px 20px;
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    padding: 16px 18px 20px;
 }
 
 /* =====================
@@ -598,22 +597,22 @@ select {
 }
 
 .wagen-tabel th {
+    padding: 0 12px 10px 12px;
     font-size: 12px;
     font-weight: bold;
-    color: #888;
+    text-align: left;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    padding: 0 12px 10px 12px;
-    border-bottom: 2px solid #c9a84c;
-    text-align: left;
+    color: var(--tekst-grijs);
+    border-bottom: 2px solid var(--goud);
 }
 
 .wagen-tabel td {
     padding: 14px 12px;
     font-size: 14px;
-    color: #1a2236;
-    border-bottom: 1px solid #d6cfb8;
+    color: var(--donkerblauw);
     vertical-align: middle;
+    border-bottom: 1px solid var(--rand);
 }
 
 .wagen-tabel tr:last-child td {
@@ -621,30 +620,30 @@ select {
 }
 
 .wagen-tabel .prijs-cel {
-    color: #c9a84c;
     font-weight: bold;
+    color: var(--goud);
 }
 
 .verwijder-link {
-    color: #a03030;
     font-size: 13px;
-    text-decoration: none;
     font-weight: bold;
+    color: var(--rood-link);
+    text-decoration: none;
 }
 
 .verwijder-link:hover {
-    color: #701818;
+    color: var(--rood-tekst-donker);
     text-decoration: underline;
 }
 
 .totaal-rij {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 0;
     font-size: 14px;
-    color: #444;
-    border-bottom: 1px solid #d6cfb8;
+    color: var(--tekst-donker);
+    border-bottom: 1px solid var(--rand);
 }
 
 .totaal-rij:last-child {
@@ -654,35 +653,35 @@ select {
 .totaal-eindprijs {
     font-size: 20px;
     font-weight: bold;
-    color: #1a2236;
+    color: var(--donkerblauw);
 }
 
 .totaal-eindprijs span {
-    color: #c9a84c;
+    color: var(--goud);
 }
 
 /* =====================
    MELDINGEN
    ===================== */
 
-.melding-ok {
-    background: #eaf3de;
-    color: #27500a;
-    border: 1px solid #c0dd97;
-    border-radius: 8px;
+.melding-ok,
+.melding-err {
+    margin-bottom: 20px;
     padding: 10px 14px;
     font-size: 14px;
-    margin-bottom: 20px;
+    border-radius: var(--radius-klein);
+}
+
+.melding-ok {
+    color: var(--groen-tekst);
+    background: var(--groen-bg);
+    border: 1px solid var(--groen-rand);
 }
 
 .melding-err {
-    background: #fcebeb;
-    color: #791f1f;
-    border: 1px solid #f7c1c1;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 14px;
-    margin-bottom: 20px;
+    color: var(--rood-tekst);
+    background: var(--rood-bg);
+    border: 1px solid var(--rood-rand);
 }
 
 /* =====================
@@ -693,41 +692,41 @@ select {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #f5f0e0;
-    border: 1px solid #d6cfb8;
-    border-radius: 8px;
+    margin-top: 12px;
     padding: 10px 14px;
     font-size: 14px;
-    color: #1a2236;
-    margin-top: 12px;
+    color: var(--donkerblauw);
+    background: var(--creme);
+    border: 1px solid var(--rand);
+    border-radius: var(--radius-klein);
 }
 
 .coupon-badge {
-    background: #c9a84c;
-    color: #1a2236;
-    font-weight: bold;
-    font-size: 12px;
     padding: 3px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--donkerblauw);
+    background: var(--goud);
     border-radius: 6px;
 }
 
 .coupon-verwijder {
+    width: auto;
+    margin-top: 0;
     margin-left: auto;
-    background: none;
-    border: 1px solid #d6cfb8;
-    color: #a03030;
+    padding: 4px 10px;
     font-size: 12px;
     font-weight: bold;
-    padding: 4px 10px;
+    color: var(--rood-link);
+    background: none;
+    border: 1px solid var(--rand);
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.15s;
-    margin-top: 0;
-    width: auto;
 }
 
 .coupon-verwijder:hover {
-    background: #fcebeb;
+    background: var(--rood-bg);
 }
 
 /* =====================
@@ -735,27 +734,27 @@ select {
    ===================== */
 
 .admin-kaart {
-    background: white;
-    border: 1px solid #d6cfb8;
-    border-radius: 12px;
     margin-bottom: 28px;
     overflow: hidden;
+    background: var(--wit);
+    border: 1px solid var(--rand);
+    border-radius: var(--radius);
 }
 
 .admin-kaart-header {
-    background: #1a2236;
-    color: #f5f0e0;
-    padding: 14px 22px;
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 14px 22px;
+    color: var(--creme);
+    background: var(--donkerblauw);
 }
 
 .admin-kaart-header h3 {
     margin: 0;
     font-size: 16px;
     font-weight: bold;
-    color: #c9a84c;
+    color: var(--goud);
 }
 
 .admin-kaart-body {
@@ -763,37 +762,37 @@ select {
 }
 
 .sub-label {
-    font-size: 13px;
-    font-weight: bold;
-    color: #1a2236;
     margin-bottom: 12px;
     padding-bottom: 6px;
-    border-bottom: 1px solid #d6cfb8;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--donkerblauw);
+    border-bottom: 1px solid var(--rand);
 }
 
 .admin-tabel {
     width: 100%;
-    border-collapse: collapse;
     font-size: 13px;
+    border-collapse: collapse;
 }
 
 .admin-tabel th {
+    padding: 0 12px 8px 12px;
     font-size: 11px;
     font-weight: bold;
-    color: #888;
+    white-space: nowrap;
+    text-align: left;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: 0 12px 8px 12px;
-    border-bottom: 2px solid #c9a84c;
-    text-align: left;
-    white-space: nowrap;
+    color: var(--tekst-grijs);
+    border-bottom: 2px solid var(--goud);
 }
 
 .admin-tabel td {
     padding: 11px 12px;
-    color: #1a2236;
-    border-bottom: 1px solid #d6cfb8;
+    color: var(--donkerblauw);
     vertical-align: middle;
+    border-bottom: 1px solid var(--rand);
 }
 
 .admin-tabel tr:last-child td {
@@ -801,38 +800,38 @@ select {
 }
 
 .admin-tabel .id-cel {
-    color: #aaa;
     font-size: 12px;
+    color: var(--tekst-grijs-licht);
 }
 
 .admin-tabel .prijs-cel {
-    color: #c9a84c;
     font-weight: bold;
+    color: var(--goud);
 }
 
 .rol-badge {
     display: inline-block;
+    padding: 2px 9px;
     font-size: 11px;
     font-weight: bold;
-    padding: 2px 9px;
     border-radius: 6px;
 }
 
 .rol-admin {
-    background: #1a2236;
-    color: #c9a84c;
+    color: var(--goud);
+    background: var(--donkerblauw);
 }
 
 .rol-klant {
-    background: #f5f0e0;
-    color: #1a2236;
-    border: 1px solid #d6cfb8;
+    color: var(--donkerblauw);
+    background: var(--creme);
+    border: 1px solid var(--rand);
 }
 
 .inline-form {
     display: flex;
-    gap: 8px;
     align-items: center;
+    gap: 8px;
 }
 
 .inline-form input[type="number"] {
@@ -847,60 +846,56 @@ select {
     font-size: 13px;
 }
 
-.btn-opslaan {
-    background: #c9a84c;
-    color: #1a2236;
-    border: none;
-    border-radius: 8px;
+.btn-opslaan,
+.btn-verwijder {
+    width: auto;
+    margin-top: 0;
+    padding: 5px 12px;
     font-size: 12px;
     font-weight: bold;
-    padding: 5px 12px;
+    border-radius: var(--radius-klein);
     cursor: pointer;
     transition: background 0.15s;
-    margin-top: 0;
-    width: auto;
+}
+
+.btn-opslaan {
+    color: var(--donkerblauw);
+    background: var(--goud);
+    border: none;
 }
 
 .btn-opslaan:hover {
-    background: #a07830;
-    color: white;
+    color: var(--wit);
+    background: var(--goud-hover);
 }
 
 .btn-verwijder {
-    background: none;
-    border: 1px solid #f7c1c1;
-    color: #a03030;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 5px 12px;
-    cursor: pointer;
-    transition: background 0.15s;
-    margin-top: 0;
-    width: auto;
-    text-decoration: none;
     display: inline-block;
+    color: var(--rood-link);
+    text-decoration: none;
+    background: none;
+    border: 1px solid var(--rood-rand);
 }
 
 .btn-verwijder:hover {
-    background: #fcebeb;
-    color: #701818;
+    color: var(--rood-tekst-donker);
+    background: var(--rood-bg);
 }
 
 .toevoeg-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 2fr auto;
-    gap: 10px;
     align-items: end;
+    gap: 10px;
     margin-bottom: 24px;
 }
 
 .toevoeg-grid label {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 4px;
     display: block;
     margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: var(--tekst-grijs);
 }
 
 .toevoeg-grid input {
@@ -909,8 +904,8 @@ select {
 
 .jij-badge {
     font-size: 12px;
-    color: #aaa;
     font-style: italic;
+    color: var(--tekst-grijs-licht);
 }
 
 /* =====================
@@ -924,12 +919,12 @@ select {
 }
 
 .bestelling-thumb {
+    flex-shrink: 0;
     width: 44px;
     height: 44px;
     object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #d6cfb8;
-    flex-shrink: 0;
+    border: 1px solid var(--rand);
+    border-radius: var(--radius-klein);
 }
 
 #account-review-lijst {
@@ -943,25 +938,25 @@ select {
    ===================== */
 
 .navbar {
-    background: #1a2236 !important;
-    border-bottom: 3px solid #c9a84c;
-    padding: 8px 24px;
-    min-height: 90px;
     display: flex;
     align-items: center;
+    min-height: 90px;
+    padding: 8px 24px;
+    background: var(--donkerblauw) !important;
+    border-bottom: 3px solid var(--goud);
 }
 
 .navbar-brand {
-    padding: 0;
-    margin-right: 30px;
     display: flex;
     align-items: center;
+    margin-right: 30px;
+    padding: 0;
 }
 
 .navbar-logo {
-    height: 75px;
-    width: auto;
     display: block;
+    width: auto;
+    height: 75px;
     transition: transform 0.3s ease;
 }
 
@@ -974,18 +969,18 @@ select {
 }
 
 .navbar-nav .nav-link {
-    color: #f5f0e0 !important;
-    font-weight: 600;
-    font-size: 15px;
     margin-left: 12px;
     padding: 10px 14px !important;
-    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--creme) !important;
+    border-radius: var(--radius-klein);
     transition: all 0.2s ease;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #1a2236 !important;
-    background: #c9a84c;
+    color: var(--donkerblauw) !important;
+    background: var(--goud);
 }
 
 .navbar-toggler {
@@ -1005,8 +1000,8 @@ select {
 }
 
 .navbar-nav .text-danger:hover {
-    background: #8b1e1e;
     color: #fff !important;
+    background: #8b1e1e;
 }
 
 @media (max-width: 991px) {
@@ -1020,8 +1015,8 @@ select {
     }
 
     .navbar-nav {
-        margin-top: 15px;
         align-items: flex-start;
+        margin-top: 15px;
     }
 
     .navbar-nav .nav-link {
