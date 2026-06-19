@@ -100,7 +100,7 @@ function maakSlide(product) {
         <div class="slide-naam">${product.product_naam}</div>
         <div class="slide-prijs">€${parseFloat(product.prijs).toFixed(2)}</div>
         <div class="slide-voorraad">${product.voorraad > 0 ? '✓ Op voorraad' : '✗ Uitverkocht'}</div>
-        <a href="../php/bestellen.php" class="product-knop">Bestellen</a>
+        <a href="../php/product.php" class="product-knop">Bestellen</a>
     `;
     return slide;
 }

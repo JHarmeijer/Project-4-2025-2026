@@ -94,7 +94,7 @@ if (isset($_POST['afrekenen'])) {
             <div style="font-size: 48px; margin-bottom: 16px;"></div>
             <h3 style="color: #1a2236; margin-bottom: 8px;">Je winkelwagen is leeg</h3>
             <p style="color: #888; font-size: 14px; margin-bottom: 24px;">Voeg producten toe om te beginnen met bestellen.</p>
-            <a href="bestellen.php" class="product-knop">Bekijk producten</a>
+            <a href="../php/product.php" class="product-knop">Bekijk producten</a>
         </div>
 
     <?php else: ?>
